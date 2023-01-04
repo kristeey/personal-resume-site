@@ -35,20 +35,27 @@ variable "repository_name" {
   default     = "personal-resume-site"
 }
 
-variable "repository_visibility" {
-  type        = string
-  description = "How visible is the github repo"
-  default     = "public"
-}
+# variable "repository_visibility" {
+#   type        = string
+#   description = "How visible is the github repo"
+#   default     = "public"
+# }
 
-variable "branch" {
-  type        = string
-  description = "branch name"
-  default     = "main"
-}
+# variable "branch" {
+#   type        = string
+#   description = "Branch name"
+#   default     = "main"
+# }
 
-variable "target_path" {
+variable "flux_sync_target_path" {
   type        = string
   description = "flux sync target path"
   default     = "gitops/cluster"
+}
+
+// ECR
+variable "ecr_repo_name" {
+  type        = string
+  description = "ECR repository name for storing app Docker images"
+  default     = "personal-resume-webapp"
 }

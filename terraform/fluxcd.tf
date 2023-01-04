@@ -9,13 +9,13 @@ resource "tls_private_key" "main" {
 
 # Flux
 data "flux_install" "main" {
-  target_path = var.target_path
+  target_path = var.flux_sync_target_path
 }
 
 data "flux_sync" "main" {
-  target_path = var.target_path
+  target_path = var.flux_sync_target_path
   url         = "ssh://git@github.com/${var.github_owner}/${var.repository_name}"
-  branch      = var.branch
+  branch      = "main"
 }
 
 # Kubernetes

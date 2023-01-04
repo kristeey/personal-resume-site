@@ -1,0 +1,49 @@
+name: Build and push 🏗️
+
+on:
+  push:
+    branches: [ main ]
+    paths: [ 'app/**' ]
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+    environment: production
+    # These permissions are needed to interact with GitHub's OIDC Token endpoint.
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+    - name: Checkout 👀
+      uses: actions/checkout@v3
+
+    - name: Install Node dependencies 🧱
+      run: npm ci
+
+    - name: Get current date 🕣
+      id: date
+      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+    
+    - name: Configure AWS credentials 🔐
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        role-to-assume: ${{ secrets.AWS_ROLE_FOR_GITHUB }}
+        role-session-name: GitHub-Action-ECR-Push
+        aws-region: eu-north-1
+    
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Setup Node ⚙️
+      uses: actions/setup-node@v3
+      with:
+        node-version-file: '.nvmrc'
+
+    - name: Build, tag, and push image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: ${{ github.event.repository.name }}
+        IMAGE_TAG: ${{ steps.date.outputs.date }} 
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -t $ECR_REGISTRY/$ECR_REPOSITORY:latest .
+        docker push --all-tags $ECR_REGISTRY/$ECR_REPOSITORY
