@@ -69,3 +69,10 @@ resource "github_actions_secret" "aws_role_secret" {
   secret_name      = "AWS_ROLE_FOR_GITHUB"
   plaintext_value  = aws_iam_role.github_actions.arn
 }
+
+resource "github_actions_secret" "aws_ecr_repo_name" {
+  repository       = var.repository_name
+  secret_name      = "AWS_ECR_REPO_NAME"
+  plaintext_value  = aws_ecr_repository.resume-app-ecr.name
+}
+
