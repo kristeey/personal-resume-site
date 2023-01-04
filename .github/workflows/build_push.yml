@@ -27,7 +27,7 @@ jobs:
       
     - name: Get current date 🕣
       id: date
-      run: echo "::set-output name=date::$(date +'%Y-%m-%d')"
+      run: echo "::set-output name=date::$(date +%F.%H%M%S)"
     
     - name: Configure AWS credentials 🔐
       uses: aws-actions/configure-aws-credentials@v1
