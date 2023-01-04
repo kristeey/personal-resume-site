@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       tags:
-        description: 'Manually trigger workflow' 
+        description: 'Enter trigger reason:' 
   push:
     branches:
       - 'main'
