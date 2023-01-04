@@ -4,11 +4,13 @@ metadata:
   name: kube-vela
   namespace: vela-system
 spec:
-  chart: kubevela/vela-minimal
-  version: "1.6.x"
-  sourceRef:
-    kind: HelmRepository
-    name: kubevela
-    namespace: flux-system
+  chart:
+    spec:
+      chart: kubevela/vela-minimal
+      version: "1.6.x"
+      sourceRef:
+        kind: HelmRepository
+        name: kubevela
+        namespace: flux-system
   values:
     systemDefinitionNamespace: vela-system
