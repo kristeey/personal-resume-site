@@ -1,0 +1,110 @@
+apiVersion: core.oam.dev/v1beta1
+kind: ComponentDefinition
+metadata:
+  name: frontend
+  namespace: vela-system
+  annotations:
+    definition.oam.dev/description: "The frontend Application component deploys a pod, service and ingress that will work with externalDNS and aws loadbalancer controller out of the box."
+spec:
+  workload:
+    definition:
+      apiVersion: apps/v1
+      kind: Deployment
+  schematic:
+    cue:
+      template: |
+        output: {
+          apiVersion: "apps/v1"
+          kind:       "Deployment"
+          metadata: {
+            name: context.name
+            namespace: *context.namespace | string
+            if parameter["namespace"] != _|_ {
+              namespace: parameter.namespace
+            }
+          }
+          spec: {
+            replicas: 2
+            selector: {
+              matchLabels: "app.oam.dev/component": context.name
+            }
+            template: {
+              metadata: labels: {
+                "app.oam.dev/component": context.name
+              }
+              spec: {
+                containers: [{
+                  name:  context.name
+                  image: parameter.image
+                  imagePullPolicy: "IfNotPresent"
+                  ports: [{
+                    containerPort: parameter.port
+                  }]
+                }]
+              }
+            }
+          }
+        }
+        outputs: {
+          service: {
+            apiVersion: "v1"
+            kind:       "Service"
+            metadata: {
+              name: context.name
+              namespace: *context.namespace | string
+              if parameter["namespace"] != _|_ {
+                namespace: parameter.namespace
+              }
+            }
+            spec: {
+              selector: "app.oam.dev/component": context.name
+              ports: [{
+                port: *80 | int
+                if parameter.port != _|_ {
+                  port: parameter.port
+                  targetPort: parameter.port
+                  protocol: "TCP"
+                }
+              }]
+              type: "NodePort"
+            }
+          }
+          ingress: {
+            apiVersion: "networking.k8s.io/v1"
+            kind: "Ingress"
+            metadata: {
+              annotations: {
+                "alb.ingress.kubernetes.io/scheme": "internet-facing"
+                "kubernetes.io/ingress.class": "alb"
+              }
+              name: context.name
+              namespace: context.namespace
+            }
+            spec: {
+              rules: [{
+                host: parameter.hostname
+                http: {
+                  paths: [{
+                    path: "/"
+                    backend: {
+                      service: {
+                        name: context.name
+                        port: {
+                          number: parameter.port
+                        }
+                      }
+                    }
+                    pathType: "Prefix"
+                  }]
+                }
+              }]
+            }
+          }
+        }
+        parameter : {
+          namespace ?: string
+          image : string
+          port : int
+          hostname : string
+        }
+

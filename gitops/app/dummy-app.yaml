@@ -22,7 +22,7 @@ spec:
     spec:
       containers:
       - image: gcr.io/google_containers/echoserver:1.4
-        imagePullPolicy: Always
+        imagePullPolicy: IfNotPresent
         name: echoserver
         ports:
         - containerPort: 8080
@@ -51,7 +51,7 @@ metadata:
   namespace: echoserver
 spec:
   rules:
-  - host: sorensenstene.site
+  - host: test.sorensenstene.site
     http:
       paths:
       - path: /
