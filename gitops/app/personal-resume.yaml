@@ -1,22 +1,22 @@
-apiVersion: core.oam.dev/v1beta1
-kind: Application
-metadata:
-  name: personal-resume
-  namespace: personal-resume-app
-spec:
-  components:
-    - name: frontend
-      type: webservice
-      properties:
-        image: ghcr.io/stefanprodan/podinfo:5.0.0
-        ports:
-          - port: 9898
-        expose: true
-      traits:
-          - type: gateway
-            properties:
-              domain: test.sorensenstene.site
-              http:
-                "/": 9898
-              class: alb
-              classInSpec: true
+# apiVersion: core.oam.dev/v1beta1
+# kind: Application
+# metadata:
+#   name: personal-resume
+#   namespace: personal-resume-app
+# spec:
+#   components:
+#     - name: frontend
+#       type: webservice
+#       properties:
+#         image: ghcr.io/stefanprodan/podinfo:5.0.0
+#         ports:
+#           - port: 9898
+#         expose: true
+#       traits:
+#           - type: gateway
+#             properties:
+#               domain: test.sorensenstene.site
+#               http:
+#                 "/": 9898
+#               class: alb
+#               classInSpec: true
