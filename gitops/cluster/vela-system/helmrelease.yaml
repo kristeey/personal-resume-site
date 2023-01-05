@@ -6,8 +6,7 @@ metadata:
 spec:
   chart:
     spec:
-      chart: vela-minimal
-      version: "1.6.x"
+      chart: vela-core
       sourceRef:
         kind: HelmRepository
         name: kubevela
