@@ -12,6 +12,5 @@ spec:
         kind: HelmRepository
         name: kubevela
         namespace: flux-system
-      interval: 24h
-  values:
-    systemDefinitionNamespace: vela-system
+  interval: 30m
+  
