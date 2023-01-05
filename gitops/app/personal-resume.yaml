@@ -12,7 +12,7 @@ spec:
         ports:
           - port: 9891
             nodeport: 9898
-            expose: true
+        expose: true
       traits:
           - type: gateway
             properties:
