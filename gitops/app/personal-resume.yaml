@@ -10,8 +10,7 @@ spec:
       properties:
         image: ghcr.io/stefanprodan/podinfo:5.0.0
         ports:
-          - port: 9891
-            nodeport: 9898
+          - port: 9898
         expose: true
       traits:
           - type: gateway
