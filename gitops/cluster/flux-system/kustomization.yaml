@@ -5,6 +5,7 @@ resources:
 - gotk-sync.yaml
 - gotk-components.yaml
 - helmrepository.yaml
+- image-update-automation.yaml
 - sync.yaml
 patchesStrategicMerge:
 - patch-aws-ecr-autologin-arg.yaml
