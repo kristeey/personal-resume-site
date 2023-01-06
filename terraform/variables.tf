@@ -41,11 +41,11 @@ variable "repository_name" {
 #   default     = "public"
 # }
 
-# variable "branch" {
-#   type        = string
-#   description = "Branch name"
-#   default     = "main"
-# }
+variable "github_branch" {
+  type        = string
+  description = "GitHub branch name to be used with fluxcd"
+  default     = "main"
+}
 
 variable "flux_sync_target_path" {
   type        = string

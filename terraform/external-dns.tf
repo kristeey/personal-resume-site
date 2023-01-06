@@ -18,6 +18,9 @@ module "external_dns_irsa_role" {
 // Install External DNS using Helm
 
 resource "helm_release" "external_dns" {
+  depends_on = [
+    module.eks
+  ]
   name = "external-dns"
 
   repository = "https://charts.bitnami.com/bitnami"
