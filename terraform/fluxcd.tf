@@ -151,12 +151,12 @@ resource "github_repository_file" "sync" {
   overwrite_on_create = true
 }
 
-resource "github_repository_file" "kustomize" {
-  repository = var.repository_name
-  file       = data.flux_sync.main.kustomize_path
-  content    = data.flux_sync.main.kustomize_content
-  branch     = var.github_branch
-}
+# resource "github_repository_file" "kustomize" {
+#   repository = var.repository_name
+#   file       = data.flux_sync.main.kustomize_path
+#   content    = data.flux_sync.main.kustomize_content
+#   branch     = var.github_branch
+# }
 
 resource "github_repository_file" "patches" {
   #  `patch_file_paths` is a map keyed by the keys of `flux_sync.main`

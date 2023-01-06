@@ -69,6 +69,16 @@ module "eks" {
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
     }
+    ingress_flux_source_controller = {
+      // https://github.com/fluxcd/flux2/discussions/2307
+      description      = "Node to node all ports/protocols"
+      protocol         = "-1"
+      from_port        = 0
+      to_port          = 0
+      type             = "ingress"
+      cidr_blocks      = ["0.0.0.0/0"]
+      ipv6_cidr_blocks = ["::/0"]
+    }
   }
   tags = {
     Environment = "test"
