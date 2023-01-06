@@ -13,6 +13,8 @@ spec:
         name: jetstack
         namespace: flux-system
   interval: 5m
+  startupapicheck:
+    timeout: 5m
   releaseName: cert-manager
   values:
     prometheus:
