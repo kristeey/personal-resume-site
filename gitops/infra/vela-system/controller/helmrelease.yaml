@@ -11,5 +11,5 @@ spec:
         kind: HelmRepository
         name: kubevela
         namespace: flux-system
-  interval: 30m
+  interval: 5m
   
