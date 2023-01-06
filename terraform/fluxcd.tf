@@ -156,7 +156,6 @@ resource "github_repository_file" "kustomize" {
   file       = data.flux_sync.main.kustomize_path
   content    = data.flux_sync.main.kustomize_content
   branch     = var.github_branch
-  overwrite_on_create = true
 }
 
 resource "github_repository_file" "patches" {

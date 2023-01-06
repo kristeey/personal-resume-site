@@ -61,10 +61,10 @@ module "eks" {
       description                   = "Allow access from control plane to webhook port of AWS load balancer controller"
     }
     egress_flux_source_controller = {
-      description      = "Allow egress SSH traffic from Flux source controller"
-      protocol         = "tcp"
-      from_port        = 22
-      to_port          = 22
+      description      = "Allow egress traffic from cluster"
+      protocol         = "-1"
+      from_port        = 0
+      to_port          = 0
       type             = "egress"
       cidr_blocks      = ["0.0.0.0/0"]
       ipv6_cidr_blocks = ["::/0"]
