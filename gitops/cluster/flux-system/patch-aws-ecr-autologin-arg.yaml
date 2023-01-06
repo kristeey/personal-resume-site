@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: ServiceAccount
+kind: Deployment
 metadata:
   name: image-reflector-controller
   namespace: flux-system
