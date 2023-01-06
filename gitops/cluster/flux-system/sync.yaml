@@ -2,11 +2,11 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: vela-sync
+  name: vela-controller-sync
   namespace: flux-system
 spec:
   interval: 10m0s
-  path: ./gitops/infra/vela-system
+  path: ./gitops/infra/vela-system/controller
   prune: true
   sourceRef:
     kind: GitRepository
