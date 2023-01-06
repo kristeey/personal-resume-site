@@ -8,6 +8,6 @@ spec:
     - name: test
       type: frontend
       properties:
-        image: gcr.io/google_containers/echoserver:1.4
-        port: 8080
+        image: 645352605981.dkr.ecr.eu-north-1.amazonaws.com/personal-resume-webapp:latest # {"$imagepolicy": "flux-system:personal-resume-webapp"}
+        port: 80
         hostname: sorensenstene.site

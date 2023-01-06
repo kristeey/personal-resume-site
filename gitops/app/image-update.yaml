@@ -1,0 +1,20 @@
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImageRepository
+metadata:
+  name: personal-resume-webapp
+  namespace: flux-system
+spec:
+  image: 645352605981.dkr.ecr.eu-north-1.amazonaws.com/personal-resume-webapp
+  interval: 5m0s
+---
+apiVersion: image.toolkit.fluxcd.io/v1beta1
+kind: ImagePolicy
+metadata:
+  name: personal-resume-webapp
+  namespace: flux-system
+spec:
+  imageRepositoryRef:
+    name: personal-resume-webapp
+  policy:
+    numerical:
+      order: asc
