@@ -8,4 +8,4 @@ spec:
     spec:
       containers:
       - args:
-        - --aws-autologin-for-ecr
+          - --aws-autologin-for-ecr
