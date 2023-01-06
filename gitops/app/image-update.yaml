@@ -16,7 +16,7 @@ spec:
   imageRepositoryRef:
     name: personal-resume-webapp
   filterTags:
-    pattern: '(?<ts1>[0-9][0-9][0-9][0-9])-(?<ts2>[0-9][0-9])-(?<ts3>[0-9][0-9]).(?<ts4>[0-9][0-9][0-9][0-9][0-9][0-9])'
+    pattern: '(?P<ts1>[0-9][0-9][0-9][0-9])-(?P<ts2>[0-9][0-9])-(?P<ts3>[0-9][0-9]).(?P<ts4>[0-9][0-9][0-9][0-9][0-9][0-9])'
     extract: '$ts1$ts2$ts3$ts4'
   policy:
     numerical:
