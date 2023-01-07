@@ -5,7 +5,7 @@ metadata:
   namespace: personal-resume-app
 spec:
   components:
-    - name: test
+    - name: personal-resume
       type: frontend
       properties:
         image: 645352605981.dkr.ecr.eu-north-1.amazonaws.com/personal-resume-webapp:2023-01-04.220452 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
