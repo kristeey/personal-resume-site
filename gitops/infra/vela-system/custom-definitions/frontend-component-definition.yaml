@@ -74,8 +74,14 @@ spec:
             kind: "Ingress"
             metadata: {
               annotations: {
+                if parameter.certificate-arn != _|_ {
+                  "alb.ingress.kubernetes.io/certificate-arn": parameter.certificate-arn
+                }
+                "alb.ingress.kubernetes.io/listen-ports": '[{"HTTP": 80}, {"HTTPS": 443}]'
+                "alb.ingress.kubernetes.io/ssl-redirect": '443'
                 "alb.ingress.kubernetes.io/scheme": "internet-facing"
                 "kubernetes.io/ingress.class": "alb"
+
               }
               name: context.name
               namespace: context.namespace
@@ -106,5 +112,6 @@ spec:
           image : string
           port : int
           hostname : string
+          certificate-arn ?: string
         }
 
