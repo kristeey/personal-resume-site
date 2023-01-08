@@ -111,7 +111,7 @@ spec:
                     pathType: "Prefix"
                     backend: {
                       service: {
-                        name: parameter.name
+                        name: context.name
                         port: {
                           number: parameter.port
                         }
