@@ -91,6 +91,7 @@ spec:
                 http: {
                   paths: [{
                     path: "/"
+                    pathType: "Prefix"
                     backend: {
                       service: {
                         name: context.name
@@ -99,7 +100,23 @@ spec:
                         }
                       }
                     }
+                  }]
+                }
+              },
+              { 
+                host: "www.\(parameter.hostname)"
+                http: {
+                  paths: [{
+                    path: "/"
                     pathType: "Prefix"
+                    backend: {
+                      service: {
+                        name: parameter.name
+                        port: {
+                          number: parameter.port
+                        }
+                      }
+                    }
                   }]
                 }
               }]
