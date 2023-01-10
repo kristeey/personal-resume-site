@@ -5,31 +5,16 @@ const skills = [
   {
     title: 'Javascript',
     competency: 3,
-    category: ['Languages', 'App/Web Development'],
-  },
-  {
-    title: 'Node.JS',
-    competency: 3,
-    category: ['App/Web Development'],
-  },
-  {
-    title: 'React',
-    competency: 3,
-    category: ['App/Web Development'],
-  },
-  {
-    title: 'Flutter',
-    competency: 4,
-    category: ['App/Web Development'],
+    category: ['Languages'],
   },
   {
     title: 'Bash',
     competency: 3,
-    category: ['Tools', 'Languages'],
+    category: ['Languages'],
   },
   {
     title: 'C',
-    competency: 2,
+    competency: 1,
     category: ['Languages'],
   },
   {
@@ -49,7 +34,7 @@ const skills = [
   },
   {
     title: 'Rust',
-    competency: 2,
+    competency: 1,
     category: ['Languages'],
   },
   {
@@ -69,7 +54,7 @@ const skills = [
   },
   {
     title: 'Azure',
-    competency: 4,
+    competency: 3,
     category: ['Cloud Providers'],
   },
   {
@@ -79,7 +64,7 @@ const skills = [
   },
   {
     title: 'AWS',
-    competency: 3,
+    competency: 2,
     category: ['Cloud Providers'],
   },
   {
@@ -93,7 +78,17 @@ const skills = [
     category: ['Kubernetes Tools'],
   },
   {
-    title: 'Prometheus/Grafana/Alertmanager',
+    title: 'Prometheus',
+    competency: 3,
+    category: ['Kubernetes Tools'],
+  },
+  {
+    title: 'Grafana',
+    competency: 3,
+    category: ['Kubernetes Tools'],
+  },
+  {
+    title: 'Alertmanager',
     competency: 3,
     category: ['Kubernetes Tools'],
   },
@@ -110,6 +105,11 @@ const skills = [
   {
     title: 'Backstage',
     competency: 1,
+    category: ['Kubernetes Tools'],
+  },
+  {
+    title: 'Velero',
+    competency: 2,
     category: ['Kubernetes Tools'],
   },
   {

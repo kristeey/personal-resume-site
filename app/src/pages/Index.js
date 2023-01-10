@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
 import Main from '../layouts/Main';
+
+const { PUBLIC_URL } = process.env;
 
 const Index = () => (
   <Main
@@ -13,28 +14,42 @@ const Index = () => (
         <div className="title">
           <h2 data-testid="heading"><Link to="/">About this site</Link></h2>
           <p>
-            This is my personal website built with React running on Kubernetes in AWS overengineered
-            with a lot of modern platform tooling.
+            This is my personal website. Here you can learn a great deal about me and my work.
           </p>
         </div>
       </header>
-      <p> Welcome to my website.
+      <p> This website is a React application written in modern JavaScript built using
+        state of the art tooling. The technology stack is a bit overkill for running this
+        application, but very cool. The main parts are described below:
         <ul>
-          <li>The infrastructure is set up with Terraform.</li>
-          <li>The deployment pipeline consist of GH actions using Docker to build conatiner
-            images and push them to AWS conainer registry. We have FluxCD and Kubevela running in
-            the cluster ensuring GitOps based platform agnostic application delivery.
+          <li>
+            Code version control is handled by Git, and the code is stored in GitHub.
           </li>
-          <li>The cluster is monitored using metrics scraped with prometheus, and visualized with
-            grafana. Network metrics are also scraped showing network traffic.
+          <li>
+            Terraform is used to provision infrastructure in AWS cloud. EKS is
+            bootstrapped with FluxCD amongs other things.
           </li>
-          <li>Cillium is used to monitor network traffic, and enforce network policies</li>
+          <li>
+            Github action is used to build and push application docker images to ECR.
+          </li>
+          <li>FluxCD provides GitOps automating application image updates, installes addons,
+            and uses the Github repo as source of truth for kubernetes manifests.
+          </li>
+          <li>
+            Kubevela is used to customize Application components such that application
+            manifests are easy to configure and maintain.
+          </li>
+          <li>
+            ExternalDNS is installed on the cluster to automate DNS record creation, and
+            AWS Loadbalancer Controller is used to automate provisioning and management
+            of Elastic Load Balancers for the kubernetes cluster.
+          </li>
         </ul>
-        Please feel free to read more <Link to="/about">about the platform</Link> behind this webpage,
-        or you can check out my {' '}
-        <Link to="/resume">resume</Link>, {' '}
-        or <Link to="/contact">contact</Link> me.
+        Please feel free to check out my <Link to="/resume">resume</Link>, and do not
+        hesitate to <Link to="/contact">contact</Link> me as well.
+        You can find the source to this project <a href="https://github.com/kristeey/personal-resume-site">here</a>.
       </p>
+      <img className="technologyImg" src={`${PUBLIC_URL}/images/technology-stack.png`} alt="" />
     </article>
   </Main>
 );
