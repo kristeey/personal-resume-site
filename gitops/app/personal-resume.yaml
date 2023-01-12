@@ -4,7 +4,7 @@ metadata:
   name: personal-resume
   namespace: personal-resume-app
   annotations:
-    app.oam.dev/publishVersion: "v1" # Needed for version control of application runs
+    app.oam.dev/publishVersion: "v2" #Test auto-commit revision
 spec:
   components:
     - name: personal-resume
