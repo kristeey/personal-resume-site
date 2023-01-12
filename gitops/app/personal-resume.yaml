@@ -4,7 +4,7 @@ metadata:
   name: personal-resume
   namespace: personal-resume-app
   annotations:
-    app.oam.dev/publishVersion: 69831181
+    app.oam.dev/publishVersion: 69831181 #test auto-commit workflow
 spec:
   components:
     - name: personal-resume
