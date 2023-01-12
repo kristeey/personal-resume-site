@@ -114,7 +114,7 @@ const skills = [
   },
   {
     title: 'Github Actions',
-    competency: 4,
+    competency: 5,
     category: ['Tools'],
   },
   {
@@ -129,7 +129,7 @@ const skills = [
   },
   {
     title: 'Git',
-    competency: 4,
+    competency: 5,
     category: ['Tools'],
   },
   {
