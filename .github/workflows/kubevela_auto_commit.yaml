@@ -1,5 +1,9 @@
 name: Auto Commit
 on:
+  workflow_dispatch:
+    inputs:
+      tags:
+        description: 'Enter trigger reason:' 
   push:
     branches:
       - 'main'
