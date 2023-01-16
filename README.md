@@ -17,4 +17,4 @@ This is the source to my personal resume website. It consists of four main parts
 - Install Cilium for network policies and scrape network metrics. Explore Wireguard.
 - Make Terraform modules to cluster similar resources together, improve readability ,and improve resource dependency. 
 - Add TLS certificate provisioning and validation to Terraform code.
-- Make github action workflow for updating kubevela Application revisions.
+- Integrate Snyk in workflow
