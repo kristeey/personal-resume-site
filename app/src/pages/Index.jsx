@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Main from '../layouts/Main';
 
-const { PUBLIC_URL } = process.env;
+const { PUBLIC_URL } = import.meta.env;
 
 const Index = () => (
   <Main
@@ -49,7 +49,7 @@ const Index = () => (
         hesitate to <Link to="/contact">contact</Link> me as well.
         You can find the source to this project <a href="https://github.com/kristeey/personal-resume-site">here</a>.
       </p>
-      <img className="technologyImg" src={`${PUBLIC_URL}/images/technology-stack.png`} alt="" />
+      <img className="technologyImg" src={`/images/technology-stack.png`} alt="" />
     </article>
   </Main>
 );
