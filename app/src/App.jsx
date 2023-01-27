@@ -12,7 +12,6 @@ const Contact = lazy(() => import('./pages/Contact'));
 const Index = lazy(() => import('./pages/Index'));
 const NotFound = lazy(() => import('./pages/NotFound'));
 const Resume = lazy(() => import('./pages/Resume'));
-const Download = lazy(() => import('./pages/Download'));
 
 const App = () => (
   <BrowserRouter basename={PUBLIC_URL}>
@@ -21,7 +20,6 @@ const App = () => (
         <Route exact path="/" component={Index} />
         <Route path="/contact" component={Contact} />
         <Route path="/resume" component={Resume} />
-        <Route path="/download" component={Download} />
         <Route component={NotFound} status={404} />
       </Switch>
     </Suspense>
