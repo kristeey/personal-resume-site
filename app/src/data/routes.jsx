@@ -4,10 +4,6 @@ const routes = [
     label: 'Kristian Sørensen Stene',
     path: '/',
   },
-  // {
-  //   label: 'About',
-  //   path: '/about',
-  // },
   {
     label: 'Resume',
     path: '/resume',
@@ -15,6 +11,10 @@ const routes = [
   {
     label: 'Contact',
     path: '/contact',
+  },
+  {
+    label: 'Download',
+    path: '/download',
   },
 ];
 
