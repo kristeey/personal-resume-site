@@ -13,12 +13,12 @@ const Index = () => (
       <header>
         <div className="title">
           <h2 data-testid="heading"><Link to="/">About this site</Link></h2>
-          <p>
+          <p className='sub-title'>
             This is my personal website. Here you can learn a great deal about me and my work.
           </p>
         </div>
       </header>
-      <p> This website is a React application written in modern JavaScript built using
+      <div> This website is a React application written in modern JavaScript built using
         state of the art tooling. The technology stack is a bit overkill for running this
         application, but very cool. The main parts are described below:
         <ul>
@@ -48,7 +48,7 @@ const Index = () => (
         Please feel free to check out my <Link to="/resume">resume</Link>, and do not
         hesitate to <Link to="/contact">contact</Link> me as well.
         You can find the source to this project <a href="https://github.com/kristeey/personal-resume-site">here</a>.
-      </p>
+      </div>
       <img className="technologyImg" src={`/images/technology-stack.png`} alt="" />
     </article>
   </Main>

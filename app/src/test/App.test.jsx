@@ -23,21 +23,6 @@ const pages = [
     component: Index,
   },
   {
-    route: '/about',
-    heading: 'About Me',
-    component: About,
-  },
-  {
-    route: '/projects',
-    heading: 'Projects',
-    component: Projects,
-  },
-  {
-    route: '/stats',
-    heading: 'Stats',
-    component: Stats,
-  },
-  {
     route: '/contact',
     heading: 'Contact',
     component: Contact,

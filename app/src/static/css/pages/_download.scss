@@ -1,0 +1,28 @@
+@import 'components/button';
+// Download page (/download)
+
+.downloadButton {
+  background-color: transparent;
+  border: 0;
+  box-shadow: inset 0 0 0 1px _palette(border);
+  color: _palette(fg-bold) !important;
+  cursor: pointer;
+  display: inline-block;
+  font-family: _font(family-heading);
+  font-size: 0.6em;
+  font-weight: _font(weight-heading-bold);
+  height: _size(element-height) * 1.75;
+  letter-spacing: _font(kerning-heading);
+  line-height: _size(element-height) * 1.75;
+  padding: 0 2.5em;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+
+/* This is where you define the hover effect */
+.button:hover > .downloadButton {
+  background-color: green;
+}
