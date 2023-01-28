@@ -10,7 +10,7 @@ spec:
     - name: personal-resume
       type: frontend
       properties:
-        image: 645352605981.dkr.ecr.eu-north-1.amazonaws.com/personal-resume-webapp:2023-01-19.233055 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
+        image: 645352605981.dkr.ecr.eu-north-1.amazonaws.com/personal-resume-webapp:2023-01-28.000359 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
         port: 80
         hostname: sorensenstene.site
         certificateArn: arn:aws:acm:eu-north-1:645352605981:certificate/128053c4-28af-41e2-96a9-aff248715ad7
