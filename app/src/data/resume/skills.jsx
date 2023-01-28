@@ -23,12 +23,12 @@ const skills = [
     category: ['Languages'],
   },
   {
-    title: 'python',
+    title: 'Python',
     competency: 4,
     category: ['Languages'],
   },
   {
-    title: 'go',
+    title: 'Go',
     competency: 3,
     category: ['Languages'],
   },
@@ -113,7 +113,7 @@ const skills = [
     category: ['Kubernetes Tools'],
   },
   {
-    title: 'Github Actions',
+    title: 'GitHub Actions',
     competency: 5,
     category: ['Tools'],
   },

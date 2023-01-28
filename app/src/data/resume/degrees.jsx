@@ -16,7 +16,7 @@ const degrees = [
     link: 'https://www.uib.no',
     daterange: '2014-2015',
     points: [
-      'Did one year here before transferring to Cybernetics and Robotics.',
+      'Studied a year before transferring to Cybernetics and Robotics.',
     ],
   },
 ];

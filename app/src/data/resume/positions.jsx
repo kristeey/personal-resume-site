@@ -7,9 +7,9 @@ const positions = [
     daterange: 'August 2020 - September 2022',
     points: [
       'Establish and work in an SRE-/platform team to develop and modernize the internal developer platforms of multiple customers.',
-      'Specialize in technologies such as IaC (Terraform), CI/CD (Docker, Github Actions, FluxCD), Kubernetes (GKE, AKS), Monitoring (Prometheus/Grafana/Alertmanager)',
+      'Specialize in technologies such as IaC (Terraform), CI/CD (Docker, GitHub Actions, FluxCD), Kubernetes (GKE, AKS), Monitoring (Prometheus/Grafana/Alertmanager)',
       'Disaster recovery strategies in GCP.',
-      'Part-time work from October 2021 to September 2022, as I got the oppertunity to work as a Ordinary Seaman at Br.Bakke.',
+
     ],
   },
   {
@@ -19,9 +19,9 @@ const positions = [
     link: 'https://www.plokk.io',
     daterange: 'September 2022 -  Present',
     points: [
-      'Design of and implementation of concept, mobile app, webapp and connected services.',
+      'Design of and implementation of concept, mobile app, webapp and services for gamification of littering',
       'Design and implementation of the development workflow, and automate delivery process.',
-      'Technologies used: Flutter, Firebase, Cloud functions, JavaScript, Google Cloud Run, Docker, GCR, Github Actions, Mapbox, Figma.',
+      'Technologies used: Flutter, Firebase, Cloud functions, JavaScript, Google Cloud Run, Docker, GCR, GitHub Actions, Mapbox, Figma.',
     ],
   },
   {
@@ -55,7 +55,7 @@ const positions = [
     daterange: 'Summer 2018',
     points: [
       'Development of dual fuel exhaust system for cruise ship.',
-      'Writing application for founding from Innovation Norway for new technology.',
+      'Writing application to Innovation Norway for funding of new exhaust gas treatment technology.',
       'Digital marketing study.',
     ],
   },
