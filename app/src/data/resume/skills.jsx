@@ -4,7 +4,7 @@
 const skills = [
   {
     title: 'Javascript',
-    competency: 3,
+    competency: 4,
     category: ['Languages'],
   },
   {
@@ -23,12 +23,12 @@ const skills = [
     category: ['Languages'],
   },
   {
-    title: 'python',
+    title: 'Python',
     competency: 4,
     category: ['Languages'],
   },
   {
-    title: 'go',
+    title: 'Go',
     competency: 3,
     category: ['Languages'],
   },
@@ -113,7 +113,7 @@ const skills = [
     category: ['Kubernetes Tools'],
   },
   {
-    title: 'Github Actions',
+    title: 'GitHub Actions',
     competency: 5,
     category: ['Tools'],
   },
@@ -133,6 +133,11 @@ const skills = [
     category: ['Tools'],
   },
   {
+    title: 'Snyk',
+    competency: 3,
+    category: ['Tools'],
+  },
+  {
     title: 'Kubernetes',
     competency: 4,
     category: ['Tools'],
@@ -142,6 +147,26 @@ const skills = [
     competency: 3,
     category: ['Tools'],
   },
+  {
+    title: 'Jira',
+    competency: 4,
+    category: ['Project Management'],
+  },
+  {
+    title: 'GitHub Projects',
+    competency: 5,
+    category: ['Project Management'],
+  }, 
+  {
+    title: 'Confluence', 
+    competency: 5,
+    category: ['Wiki'],
+  },
+  {
+    title: 'GitHub Pages',
+    competency: 4,
+    category: ['Wiki'],
+  }
 ].map((skill) => ({ ...skill, category: skill.category.sort() }));
 
 // this is a list of colors that I like. The length should be == to the

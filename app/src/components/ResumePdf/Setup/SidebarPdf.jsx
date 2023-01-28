@@ -1,5 +1,7 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from '@react-pdf/renderer';
+import List, {Item} from './List';
+import selectedSkills from '../../../data/resume/selectedSkills';
 
 const styles = StyleSheet.create({
   sidebar: {
@@ -41,6 +43,19 @@ const styles = StyleSheet.create({
     fontSize: 9,
     fontWeight: 800,
   },
+  skillSection: {
+    paddingTop: 20,
+    fontFamily: 'Raleway',
+    fontSize: 9,
+    fontWeight: 400,
+    flexDirection: 'column',
+  },
+  skillHeading: { 
+    fontFamily: 'Raleway',
+    fontSize: 9,
+    fontWeight: 800,
+    paddingBottom: 10,
+  }
 });
 
 
@@ -64,11 +79,23 @@ const SidebarPdf = () => (
       <Image src={'/images/pdf/website-30.png'} style={styles.sidebarContactIcon}/>
       <Text style={styles.sidebarContactText} >www.sorensenstene.site</Text>
     </View>
-    <Text style={styles.sidebarGreetingText} >
+    <Text style={styles.sidebarGreetingText}>
       Hi, I'm Kristian.{'\n'}
       I like building things.{'\n'}
       I am a NTNU graduate, seaman, and SRE/Platform Engineer.
     </Text>
+    <View style={styles.skillSection}>
+      <Text style={styles.skillHeading}>
+        Skills
+      </Text>
+      <List>
+        {selectedSkills.map((skill) => (
+          <Item key={skill}>
+            {skill}
+          </Item>
+        ))}
+      </List>
+    </View>
   </View>
 );
 

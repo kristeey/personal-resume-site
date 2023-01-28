@@ -16,7 +16,8 @@ const degrees = [
     link: 'https://www.uib.no',
     daterange: '2014-2015',
     points: [
-      'Did one year here before transferring to Cybernetics and Robotics.',
+      'Interdisciplinary engineering program containing diciplines such as Geology, Chemistry, Mathematics and Phyics.',
+      'Studied a year before transferring to Cybernetics and Robotics.',
     ],
   },
 ];
