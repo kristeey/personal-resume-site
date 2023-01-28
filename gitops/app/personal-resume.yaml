@@ -4,7 +4,7 @@ metadata:
   name: personal-resume
   namespace: personal-resume-app
   annotations:
-    app.oam.dev/publishVersion: 5bc3452c
+    app.oam.dev/publishVersion: 7a28c519
 spec:
   components:
     - name: personal-resume
