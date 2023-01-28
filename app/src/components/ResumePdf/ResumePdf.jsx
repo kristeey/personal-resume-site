@@ -3,6 +3,7 @@ import { Document, Page, View, StyleSheet, Font } from '@react-pdf/renderer';
 
 import ExperiencePdfSection from './Experience/ExperiencePdfSection';
 import EducationPdfSection from './Education/EducationPdfSection';
+import ThingsILike from './ThingsILike/ThingsILike';
 import Summary from './Summary/Summary';
 import SidebarPdf from './Setup/SidebarPdf';
 import positions from '../../data/resume/positions';
@@ -53,6 +54,7 @@ const ResumePdf = () => (
         <Summary summary={summary}/>
         <EducationPdfSection data={degrees}/>
         <ExperiencePdfSection data={positions}/>
+        <ThingsILike/>
       </View>
     </Page>
   </Document>

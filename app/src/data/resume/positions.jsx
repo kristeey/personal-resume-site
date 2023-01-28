@@ -9,7 +9,8 @@ const positions = [
       'Establish and work in an SRE-/platform team to develop and modernize the internal developer platforms of multiple customers.',
       'Specialize in technologies such as IaC (Terraform), CI/CD (Docker, GitHub Actions, FluxCD), Kubernetes (GKE, AKS), Monitoring (Prometheus/Grafana/Alertmanager)',
       'Disaster recovery strategies in GCP.',
-
+      'Migration strategies/onboarding from onprem to Cloud.',
+      'Incident response.',
     ],
   },
   {
