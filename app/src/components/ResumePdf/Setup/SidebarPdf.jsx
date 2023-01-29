@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from '@react-pdf/renderer';
-import SidebarList from './sidebarlist';
+import SidebarList from './Sidebarlist';
 import selectedSkills from '../../../data/resume/selectedSkills';
 import thingsILike from '../../../data/resume/thingsILike';
 
