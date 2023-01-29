@@ -6,12 +6,12 @@ import EducationPdfSection from './Education/EducationPdfSection';
 import VoluntaryPdfSection from './Voluntary/VoluntaryPdfSection';
 import Summary from './Summary/Summary';
 import SidebarPdf from './Setup/SidebarPdf';
+import Padding from './Setup/Padding';
 
 import positions from '../../data/resume/positions';
 import degrees from '../../data/resume/degrees';
 import summary from '../../data/resume/summary';
 import voluntary from '../../data/resume/voluntary';
-import Padding from './Setup/padding';
 
 const styles = StyleSheet.create({
   page: {
