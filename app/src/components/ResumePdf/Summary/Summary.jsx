@@ -5,8 +5,7 @@ import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
   container: {
-    paddingTop: 30,
-    paddingLeft: 15,
+    padding: 10,
   },
   summaryText: {
     fontSize: 14,

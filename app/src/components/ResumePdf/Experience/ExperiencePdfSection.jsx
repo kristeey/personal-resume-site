@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 const styles = StyleSheet.create({
   container: {
     padding: 10,
-    paddingTop: 30,
   },
 });
 
