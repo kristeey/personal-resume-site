@@ -9,6 +9,6 @@ const selectedSkills = [
   'Unix/Linux',
   'Site Reliability Engineering',
   'Platform Engineering'
-]
+];
 
 export default selectedSkills;

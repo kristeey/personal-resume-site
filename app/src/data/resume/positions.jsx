@@ -7,7 +7,7 @@ const positions = [
     daterange: 'August 2020 - September 2022',
     points: [
       'Establish and work in an SRE-/platform team to develop and modernize the internal developer platforms of multiple customers.',
-      'Specialize in technologies such as IaC (Terraform), CI/CD (Docker, GitHub Actions, FluxCD), Kubernetes (GKE, AKS), Monitoring (Prometheus/Grafana/Alertmanager)',
+      'Specialize in technologies such as IaC (Terraform), CI/CD (Docker, GitHub Actions, FluxCD), Kubernetes (GKE, AKS), Monitoring (Prometheus/Grafana/Alertmanager).',
       'Disaster recovery strategies in GCP.',
       'Migration strategies/onboarding from onprem to Cloud.',
       'Incident response.',
@@ -20,7 +20,7 @@ const positions = [
     link: 'https://www.plokk.io',
     daterange: 'September 2022 -  Present',
     points: [
-      'Design of and implementation of concept, mobile app, webapp and services for gamification of littering',
+      'Design of and implementation of concept, mobile app, webapp and services for gamification of litter picking.',
       'Design and implementation of the development workflow, and automate delivery process.',
       'Technologies used: Flutter, Firebase, Cloud functions, JavaScript, Google Cloud Run, Docker, GCR, GitHub Actions, Mapbox, Figma.',
     ],
@@ -43,8 +43,8 @@ const positions = [
     link: 'https://www.ivar.no',
     daterange: 'Summer 2019',
     points: [
-      'Development of vision based robot system for battery picking from metal waste. Close cooperation with RobotNorge AS',
-      'Write a report on findings connected to the amount of batteries found in consumer waste enterng the recycling facility',
+      'Development of vision based robot system for battery picking from metal waste. Close cooperation with RobotNorge AS.',
+      'Write a report on findings connected to the amount of batteries found in consumer waste enterng the recycling facility.',
       'Technologies used: OpenCV, C++, Python, RAPID, TCP/IP, Tensorflow, NumPy, Supervisely.',
     ],
   },
@@ -87,8 +87,8 @@ const positions = [
     link: 'https://www.forsvaret.no/en',
     daterange: 'August 2013 - July 2014',
     points: [
-      'Compulsory military service',
-      'Controlling and maintenance of Javelin weapon system',
+      'Compulsory military service.',
+      'Controlling and maintenance of Javelin weapon system.',
     ],
   },
   {

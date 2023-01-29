@@ -1,6 +1,6 @@
 import { View, StyleSheet } from '@react-pdf/renderer';
 import Title from '../Setup/Title';
-import EducationPdfEntry from './EducationPdfEntry';
+import VoluntaryPdfEntry from './VoluntaryPdfEntry';
 import PropTypes from 'prop-types';
 
 const styles = StyleSheet.create({
@@ -9,31 +9,30 @@ const styles = StyleSheet.create({
   },
 });
 
-const EducationPdfSection = ({ data }) => (
+const VoluntaryPdfSection = ({ data }) => (
   <View style={styles.container}>
-    <Title>Education</Title>
+    <Title>Voluntary Work</Title>
     <View>    
-      {data.map((degree) => (
-        <EducationPdfEntry
-          data={degree}
-          key={degree.school}
+      {data.map((voluntaryWork) => (
+        <VoluntaryPdfEntry
+          data={voluntaryWork}
+          key={voluntaryWork.title}
         />
       ))}
     </View>
   </View>
 );
 
-EducationPdfSection.propTypes = {
+VoluntaryPdfSection.propTypes = {
   data: PropTypes.arrayOf(PropTypes.shape({
-    school: PropTypes.string,
-    degree: PropTypes.string,
+    title: PropTypes.string,
     daterange: PropTypes.string,
     points: PropTypes.arrayOf(PropTypes.string),
   })),
 };
 
-EducationPdfSection.defaultProps = {
+VoluntaryPdfSection.defaultProps = {
   data: [],
 };
 
-export default EducationPdfSection;
+export default VoluntaryPdfSection;

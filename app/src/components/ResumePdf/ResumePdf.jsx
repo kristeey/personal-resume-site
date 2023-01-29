@@ -3,12 +3,15 @@ import { Document, Page, View, StyleSheet, Font } from '@react-pdf/renderer';
 
 import ExperiencePdfSection from './Experience/ExperiencePdfSection';
 import EducationPdfSection from './Education/EducationPdfSection';
-import ThingsILike from './ThingsILike/ThingsILike';
+import VoluntaryPdfSection from './Voluntary/VoluntaryPdfSection';
 import Summary from './Summary/Summary';
 import SidebarPdf from './Setup/SidebarPdf';
+
 import positions from '../../data/resume/positions';
 import degrees from '../../data/resume/degrees';
 import summary from '../../data/resume/summary';
+import voluntary from '../../data/resume/voluntary';
+import Padding from './Setup/padding';
 
 const styles = StyleSheet.create({
   page: {
@@ -19,8 +22,6 @@ const styles = StyleSheet.create({
   },
   rightContainer: {
     backgroundColor: '#ffffff',
-    marginTop: -30,
-    marginBottom: -30,
     padding: 10,
     paddingRight: 20,
     paddingTop: 30,
@@ -38,24 +39,15 @@ Font.register({ family: 'Raleway', fonts: [
 const ResumePdf = () => (
   <Document>
     <Page size="A4" style={styles.page}>
-      <View
-        style={{
-          backgroundColor: 'white',
-          width: 420.53,
-          height: 30,
-          top: 0,
-          right: 0,
-          position: 'absolute',
-        }}
-        fixed
-      />
+      <Padding placement='top' />
       <SidebarPdf/>
       <View style={styles.rightContainer}>
         <Summary summary={summary}/>
         <EducationPdfSection data={degrees}/>
         <ExperiencePdfSection data={positions}/>
-        <ThingsILike/>
+        <VoluntaryPdfSection data={voluntary}/>
       </View>
+      <Padding placement='bottom' />
     </Page>
   </Document>
 );

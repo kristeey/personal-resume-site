@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, Image, Text, StyleSheet } from '@react-pdf/renderer';
-import List, {Item} from './List';
+import SidebarList from './sidebarlist';
 import selectedSkills from '../../../data/resume/selectedSkills';
+import thingsILike from '../../../data/resume/thingsILike';
 
 const styles = StyleSheet.create({
   sidebar: {
@@ -21,7 +22,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 800,
     paddingTop: 20,
-    paddingBottom: 20,
     textTransform: 'uppercase',
   },
   sidebarContactEntry: {
@@ -38,24 +38,10 @@ const styles = StyleSheet.create({
   },
   sidebarGreetingText: {
     paddingTop: 20,
-    paddingBottom: 20,
     fontFamily: 'Raleway',
     fontSize: 9,
     fontWeight: 800,
   },
-  skillSection: {
-    paddingTop: 20,
-    fontFamily: 'Raleway',
-    fontSize: 9,
-    fontWeight: 400,
-    flexDirection: 'column',
-  },
-  skillHeading: { 
-    fontFamily: 'Raleway',
-    fontSize: 9,
-    fontWeight: 800,
-    paddingBottom: 10,
-  }
 });
 
 
@@ -84,17 +70,11 @@ const SidebarPdf = () => (
       I like building things.{'\n'}
       I am a NTNU graduate, seaman, and SRE/Platform Engineer.
     </Text>
-    <View style={styles.skillSection}>
-      <Text style={styles.skillHeading}>
-        Skills
-      </Text>
-      <List>
-        {selectedSkills.map((skill) => (
-          <Item key={skill}>
-            {skill}
-          </Item>
-        ))}
-      </List>
+    <View style={{paddingTop:20}}>
+      <SidebarList header='Skills' points={selectedSkills}/>
+    </View>
+    <View style={{paddingTop:20}}>
+      <SidebarList header='Things I like' points={thingsILike}/>
     </View>
   </View>
 );
