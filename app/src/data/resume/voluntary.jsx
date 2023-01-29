@@ -4,7 +4,7 @@ const degrees = [
     link: 'https://www.ntnu.edu/studies/courses/BI2065',
     daterange: 'August 2018-January 2019',
     points: [
-      'Have ongoing dialogue with their fellow students about education quality.',
+      'Have ongoing dialogue with fellow students about education quality.',
       'Represent all the students in the reference group meetings.',
       'Sum up the feedback to the course coordinator in a reference group report, including proposed adjustments',
     ],

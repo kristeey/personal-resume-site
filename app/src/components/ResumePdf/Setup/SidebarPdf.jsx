@@ -22,6 +22,7 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: 800,
     paddingTop: 20,
+    paddingBottom: 20,
     textTransform: 'uppercase',
   },
   sidebarContactEntry: {
