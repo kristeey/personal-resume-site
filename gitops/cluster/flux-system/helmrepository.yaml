@@ -4,7 +4,7 @@ metadata:
   name: kubevela
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 1h0m0s
   url: https://charts.kubevela.net/core
 ---
 apiVersion: source.toolkit.fluxcd.io/v1beta2
@@ -13,5 +13,14 @@ metadata:
   name: jetstack
   namespace: flux-system
 spec:
-  interval: 5m0s
+  interval: 1h0m0s
   url: https://charts.jetstack.io
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: sealed-secrets
+  namespace: flux-system
+spec:
+  interval: 1h0m0s
+  url: https://bitnami-labs.github.io/sealed-secrets
