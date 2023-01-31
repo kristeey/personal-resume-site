@@ -15,6 +15,7 @@ spec:
   interval: 5m
   releaseName: robusta
   values:
+    clusterName: resume-cluster
     globalConfig:
       signing_key: "{{ ENV.SIGNING_KEY }}"
       account_id: "{{ ENV.ACCOUNT_ID }}"
