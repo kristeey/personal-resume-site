@@ -3,3 +3,57 @@ kind: HelmRelease
 metadata:
   name: robusta
   namespace: robusta
+spec:
+  chart:
+    spec:
+      chart: robusta
+      version: v0.10.x
+      sourceRef:
+        kind: HelmRepository
+        name: robusta
+        namespace: flux-system
+  interval: 5m
+  releaseName: robusta
+  values:
+    globalConfig:
+      signing_key: "{{ ENV.SIGNING_KEY }}"
+      account_id: "{{ ENV.ACCOUNT_ID }}"
+    sinksConfig:
+    - slack_sink:
+        name: main_slack_sink
+        slack_channel: "{{ ENV.SLACK_SINK_CHANNEL_NAME}}"
+        api_key: "{{ ENV.SLACK_SINK_API_KEY }}"
+    - robusta_sink:
+        name: robusta_ui_sink
+        token: "{{ ENV.ROBUSTA_SINK_TOKEN }}"
+    enablePrometheusStack: true
+    enablePlatformPlaybooks: true
+    runner:
+      sendAdditionalTelemetry: false
+      additional_env_vars:
+      - name: SIGNING_KEY
+        valueFrom:
+          secretKeyRef:
+            name: robusta-env-secrets
+            key: signing_key
+      - name: ACCOUNT_ID
+        valueFrom:
+          secretKeyRef:
+            name: robusta-env-secrets
+            key: account_id
+      - name: SLACK_SINK_CHANNEL_NAME
+        valueFrom:
+          secretKeyRef:
+            name: robusta-env-secrets
+            key: slack_sink_channel_name
+      - name: SLACK_SINK_API_KEY
+        valueFrom:
+          secretKeyRef:
+            name: robusta-env-secrets
+            key: slack_sink_api_key
+      - name: ROBUSTA_SINK_TOKEN
+        valueFrom:
+          secretKeyRef:
+            name: robusta-env-secrets
+            key: robusta_sink_token
+

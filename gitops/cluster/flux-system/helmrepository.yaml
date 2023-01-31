@@ -24,3 +24,12 @@ metadata:
 spec:
   interval: 1h0m0s
   url: https://bitnami-labs.github.io/sealed-secrets
+---
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: robusta
+  namespace: flux-system
+spec:
+  interval: 1h0m0s
+  url: https://robusta-charts.storage.googleapis.com
