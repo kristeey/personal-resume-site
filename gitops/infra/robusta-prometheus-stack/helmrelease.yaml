@@ -57,4 +57,11 @@ spec:
           secretKeyRef:
             name: robusta-env-secrets
             key: robusta_sink_token
+customPlaybooks:
+- triggers:
+    - on_deployment_update: {}
+  actions:
+    - resource_babysitter:
+        omitted_fields: []
+        fields_to_monitor: ["spec.template.spec.containers[0].image"]
 
