@@ -17,16 +17,16 @@ spec:
   values:
     clusterName: resume-cluster
     globalConfig:
-      signing_key: "{{ ENV.SIGNING_KEY }}"
-      account_id: "{{ ENV.ACCOUNT_ID }}"
+      signing_key: "{{ env.SIGNING_KEY }}"
+      account_id: "{{ env.ACCOUNT_ID }}"
     sinksConfig:
     - slack_sink:
         name: main_slack_sink
-        slack_channel: "{{ ENV.SLACK_SINK_CHANNEL_NAME}}"
-        api_key: "{{ ENV.SLACK_SINK_API_KEY }}"
+        slack_channel: "{{ env.SLACK_SINK_CHANNEL_NAME}}"
+        api_key: "{{ env.SLACK_SINK_API_KEY }}"
     - robusta_sink:
         name: robusta_ui_sink
-        token: "{{ ENV.ROBUSTA_SINK_TOKEN }}"
+        token: "{{ env.ROBUSTA_SINK_TOKEN }}"
     enablePrometheusStack: true
     enablePlatformPlaybooks: true
     runner:
