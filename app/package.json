@@ -23,7 +23,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "0.2.0",
     "@mui/material": "^5.11.5",
-    "@react-pdf/renderer": "^3.0.2",
+    "@react-pdf/renderer": "^3.0.3",
     "dayjs": "^1.11.7",
     "events": "^3.3.0",
     "prop-types": "^15.8.1",
