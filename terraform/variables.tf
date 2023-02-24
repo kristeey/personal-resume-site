@@ -69,3 +69,8 @@ variable "ecr_repo_name" {
   description = "ECR repository name for storing app Docker images"
   default     = "personal-resume-webapp"
 }
+variable "gar_repo_name" {
+  type        = string
+  description = "ECR repository name for storing app Docker images"
+  default     = "personal-resume-webapp"
+}

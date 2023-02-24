@@ -41,22 +41,24 @@ jobs:
         token_format: 'access_token' # Needed to generate oauth 2.0 access token to be used in furter workflow steps.
         workload_identity_provider: ${{ secrets.GCP_GH_IDENTITY_PROVIDER }}
         service_account: ${{ secrets.GCP_GH_SA_EMAIL }}
+        access_token_lifetime: 300s
 
-    - name: ✍️ Login to GCR
+    - name: ✍️ Login to GAR
       uses: docker/login-action@v2
       with:
-        registry: eu.gcr.io
+        registry: europe-north1-docker.pkg.dev
         username: oauth2accesstoken
         password: ${{ steps.auth.outputs.access_token }}
 
     - name: 🏗️ Build, tag, and push image to GCR 📬
       env:
-        GCR_REGISTRY: 'eu.gcr.io'
+        GCR_REGISTRY: 'europe-north1-docker.pkg.dev'
         GCR_PROJECT_ID: ${{ steps.auth.outputs.project_id }}
+        GAR_REPO: ${{ secrets.GAR_REPO_NAME }}
         IMAGE_TAG: ${{ steps.date.outputs.date }} 
       run: |
-        docker build -t $GCR_REGISTRY/$GCR_PROJECT_ID:$IMAGE_TAG -t $GCR_REGISTRY/$GCR_PROJECT_ID:latest .
-        docker push --all-tags $GCR_REGISTRY/$GCR_PROJECT_ID
+        docker build -t $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO:$IMAGE_TAG -t $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO:latest .
+        docker push --all-tags $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO
   
     # - name: Configure AWS credentials 🔐
     #   uses: aws-actions/configure-aws-credentials@v1
