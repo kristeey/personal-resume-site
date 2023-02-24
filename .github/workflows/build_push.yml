@@ -2,6 +2,9 @@ name: Build and push 🏗️
 
 on:
   workflow_dispatch:
+    branches:
+      - 'migrate-to-gcp'
+      - 'main'
     inputs:
       tags:
         description: 'Enter trigger reason:' 
