@@ -1,20 +1,30 @@
 
 variable "region" {
-    type        = string
-    description = "The AWS region to provision resources in"
-    default      = "eu-north-1"
+  type        = string
+  description = "The region to provision resources in"
+  default      = "europe-north1"
+}
+variable "zone" {
+  type        = string
+  description = "The zone to provision resources in"
+  default      = "europe-north1-a"
 }
 
-variable "eks_cluster_id" {
-    type        = string
-    description = "The id/name of the EKS cluster."
-    default     = "resume-cluster"
+variable "project_id" {
+  type        = string
+  description = "Name of GKE project"
+}
+
+variable "gke_cluster_id" {
+  type        = string
+  description = "The id/name of the EKS cluster."
+  default     = "resume-cluster"
 }
 
 variable "hosted_dns_zone_name" {
-    type        = string
-    description = "The name of the Route53 hosted zone"
-    default     = "sorensenstene.site"
+  type        = string
+  description = "The name of the Route53 hosted zone"
+  default     = "sorensenstene.site"
 }
 
 // Flux CD 

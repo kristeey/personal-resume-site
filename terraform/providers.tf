@@ -1,6 +1,13 @@
 terraform {
-  required_version = "~> 1.0"
+  backend "gcs" {
+    bucket = "tf-state-personal-resume"
+    prefix = "terraform/state"
+  }
   required_providers {
+    google = {
+      source  = "hashicorp/google"
+      version = "4.51.0"
+    }
     kubectl = {
       source  = "gavinbunney/kubectl"
       version = ">= 1.14.0"
@@ -28,29 +35,34 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = "eu-north-1"
+provider "google" {
+  project = var.project_id
+  region  = var.region
 }
 
+# provider "aws" {
+#   region = "eu-north-1"
+# }
+
 provider "kubectl" {
-  host                   = data.aws_eks_cluster.default.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
+  host                   = google_container_cluster.resume_cluster.endpoint
+  cluster_ca_certificate = base64decode(google_container_cluster.resume_cluster.master_auth.0.cluster_ca_certificate)
   load_config_file       = false
 
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.default.id]
+    args        = ["eks", "get-token", "--cluster-name", google_container_cluster.resume_cluster.id]
     command     = "aws"
   }
 }
 
 provider "helm" {
   kubernetes {
-    host                   = data.aws_eks_cluster.default.endpoint
-    cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
+    host                   = google_container_cluster.resume_cluster.endpoint
+    cluster_ca_certificate = base64decode(google_container_cluster.resume_cluster.master_auth.0.cluster_ca_certificate)
     exec {
       api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.default.id]
+      args        = ["eks", "get-token", "--cluster-name", google_container_cluster.resume_cluster.id]
       command     = "aws"
     }
   }
@@ -59,11 +71,11 @@ provider "helm" {
 provider "flux" {}
 
 provider "kubernetes" {
-  host                   = data.aws_eks_cluster.default.endpoint
-  cluster_ca_certificate = base64decode(data.aws_eks_cluster.default.certificate_authority[0].data)
+  host                   = google_container_cluster.resume_cluster.endpoint
+  cluster_ca_certificate = base64decode(google_container_cluster.resume_cluster.master_auth.0.cluster_ca_certificate)
   exec {
     api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", data.aws_eks_cluster.default.id]
+    args        = ["eks", "get-token", "--cluster-name", google_container_cluster.resume_cluster.id]
     command     = "aws"
   }
 }
