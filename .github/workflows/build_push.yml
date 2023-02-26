@@ -55,10 +55,11 @@ jobs:
         GCR_REGISTRY: 'europe-north1-docker.pkg.dev'
         GCR_PROJECT_ID: ${{ steps.auth.outputs.project_id }}
         GAR_REPO: ${{ secrets.GAR_REPO_NAME }}
-        IMAGE_TAG: ${{ steps.date.outputs.date }} 
+        IMAGE_TAG: ${{ steps.date.outputs.date }}
+        IMAGE_NAME: webapp
       run: |
-        docker build -t $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO:$IMAGE_TAG -t $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO:latest .
-        docker push --all-tags $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO
+        docker build -t $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO/$IMAGE_NAME:$IMAGE_TAG -t $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO/$IMAGE_NAME:latest .
+        docker push --all-tags $GCR_REGISTRY/$GCR_PROJECT_ID/$GAR_REPO/$IMAGE_NAME
   
     # - name: Configure AWS credentials 🔐
     #   uses: aws-actions/configure-aws-credentials@v1
