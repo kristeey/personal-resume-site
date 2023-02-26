@@ -5,8 +5,14 @@ locals {
 # Create Google Cloud Service Account to impersonate with federated access token
 # https://github.com/terraform-google-modules/terraform-google-github-actions-runners/tree/master/modules/gh-oidc
 resource "google_service_account" "gh_action_sa" {
-  account_id   = "gh-action-to-gcr-sa"
-  display_name = "Service Account that GH action impersonate to push images to GCR."
+  account_id   = "gh-action-to-gar-sa"
+  display_name = "Service Account that GH action impersonate to push images to GAR."
+}
+
+resource "google_project_iam_member" "gh_action_gar_writer" {
+  project = var.project_id
+  role    = "roles/artifactregistry.writer"
+  member  = "serviceAccount:${google_service_account.gh_action_sa.email}"
 }
 
 # This module handles the opinionated creation of infrastructure necessary to configure Workload Identity pools 
