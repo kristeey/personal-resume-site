@@ -1,5 +1,5 @@
 locals {
-  repo       = "kristeey/personal-resume-site" 
+  repo = "kristeey/personal-resume-site" 
 }
 
 # Create Google Cloud Service Account to impersonate with federated access token
@@ -33,4 +33,18 @@ module "gh_oidc" {
       attribute = "attribute.repository/${local.repo}"
     }
   }
+}
+
+# Store SA name and provider name as github action secret
+
+resource "github_actions_secret" "gh-action-sa-name" {
+  repository       = var.repository_name
+  secret_name      = "GCP_GH_SA_EMAIL"
+  plaintext_value  = google_service_account.gh_action_sa.email
+}
+
+resource "github_actions_secret" "workload-identity-provider" {
+  repository       = var.repository_name
+  secret_name      = "GCP_GH_IDENTITY_PROVIDER"
+  plaintext_value  = module.gh_oidc.provider_name
 }

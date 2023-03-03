@@ -40,44 +40,37 @@ provider "google" {
   region  = var.region
 }
 
-# provider "aws" {
-#   region = "eu-north-1"
-# }
+# https://registry.terraform.io/modules/terraform-google-modules/kubernetes-engine/google/latest/submodules/auth
+module "gke_auth" {
+  source               = "terraform-google-modules/kubernetes-engine/google//modules/auth"
+  version              = ">= 24.0.0"
+  project_id           = var.project_id
+  cluster_name         = var.gke_cluster_id
+  location             = var.zone
+  use_private_endpoint = false
+}
 
 provider "kubectl" {
-  host                   = google_container_cluster.resume_cluster.endpoint
-  cluster_ca_certificate = base64decode(google_container_cluster.resume_cluster.master_auth.0.cluster_ca_certificate)
+  cluster_ca_certificate = module.gke_auth.cluster_ca_certificate
+  host                   = module.gke_auth.host
+  token                  = module.gke_auth.token
   load_config_file       = false
-
-  exec {
-    api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", google_container_cluster.resume_cluster.id]
-    command     = "aws"
-  }
 }
 
 provider "helm" {
   kubernetes {
-    host                   = google_container_cluster.resume_cluster.endpoint
-    cluster_ca_certificate = base64decode(google_container_cluster.resume_cluster.master_auth.0.cluster_ca_certificate)
-    exec {
-      api_version = "client.authentication.k8s.io/v1beta1"
-      args        = ["eks", "get-token", "--cluster-name", google_container_cluster.resume_cluster.id]
-      command     = "aws"
-    }
+    cluster_ca_certificate = module.gke_auth.cluster_ca_certificate
+    host                   = module.gke_auth.host
+    token                  = module.gke_auth.token
   }
 }
 
 provider "flux" {}
 
 provider "kubernetes" {
-  host                   = google_container_cluster.resume_cluster.endpoint
-  cluster_ca_certificate = base64decode(google_container_cluster.resume_cluster.master_auth.0.cluster_ca_certificate)
-  exec {
-    api_version = "client.authentication.k8s.io/v1beta1"
-    args        = ["eks", "get-token", "--cluster-name", google_container_cluster.resume_cluster.id]
-    command     = "aws"
-  }
+  cluster_ca_certificate = module.gke_auth.cluster_ca_certificate
+  host                   = module.gke_auth.host
+  token                  = module.gke_auth.token
 }
 
 provider "github" {

@@ -53,7 +53,6 @@ resource "google_service_account" "kubernetes" {
 resource "google_container_node_pool" "general" {
   name       = "general"
   cluster    = google_container_cluster.resume_cluster.id
-  node_count = 1
 
   management {
     auto_repair  = true
