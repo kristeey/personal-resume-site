@@ -2,66 +2,85 @@
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-  name: vela-controller-sync
-  namespace: flux-system
-spec:
-  interval: 10m0s
-  path: ./gitops/infra/vela-system/controller
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: sealed-secrets-sync
+  name: nginx-sync
   namespace: flux-system
 spec:
   dependsOn:
     - name: flux-system
       namespace: flux-system
   interval: 10m0s
-  path: ./gitops/infra/sealed-secrets
+  path: ./gitops/infra/ingress-nginx
   prune: true
   sourceRef:
     kind: GitRepository
     name: flux-system
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: robusta-sync
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: flux-system
-      namespace: flux-system
-    - name: sealed-secrets-sync
-      namespace: flux-system
-  interval: 10m0s
-  path: ./gitops/infra/robusta-prometheus-stack
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
----
-apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-kind: Kustomization
-metadata:
-  name: app-sync
-  namespace: flux-system
-spec:
-  dependsOn:
-    - name: flux-system
-      namespace: flux-system
-    - name: vela-custom-definitions-sync
-      namespace: flux-system
-    - name: sealed-secrets-sync
-      namespace: flux-system
-  interval: 10m0s
-  path: ./gitops/app
-  prune: true
-  sourceRef:
-    kind: GitRepository
-    name: flux-system
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: vela-controller-sync
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: nginx-sync
+#       namespace: flux-system
+#   interval: 10m0s
+#   path: ./gitops/infra/vela-system/controller
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: sealed-secrets-sync
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: nginx-sync
+#       namespace: flux-system
+#   interval: 10m0s
+#   path: ./gitops/infra/sealed-secrets
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: robusta-sync
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: nginx-sync
+#       namespace: flux-system
+#     - name: sealed-secrets-sync
+#       namespace: flux-system
+#   interval: 10m0s
+#   path: ./gitops/infra/robusta-prometheus-stack
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
+# ---
+# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+# kind: Kustomization
+# metadata:
+#   name: app-sync
+#   namespace: flux-system
+# spec:
+#   dependsOn:
+#     - name: nginx-sync
+#       namespace: flux-system
+#     - name: vela-custom-definitions-sync
+#       namespace: flux-system
+#     - name: sealed-secrets-sync
+#       namespace: flux-system
+#   interval: 10m0s
+#   path: ./gitops/app
+#   prune: true
+#   sourceRef:
+#     kind: GitRepository
+#     name: flux-system
