@@ -6,4 +6,4 @@ resources:
 - gotk-components.yaml
 - helmrepository.yaml
 - image-update-automation.yaml
-#- sync.yaml
+- sync.yaml
