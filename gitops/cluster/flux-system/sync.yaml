@@ -30,23 +30,25 @@ spec:
   sourceRef:
     kind: GitRepository
     name: flux-system
-# ---
-# apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
-# kind: Kustomization
-# metadata:
-#   name: vela-controller-sync
-#   namespace: flux-system
-# spec:
-#   dependsOn:
-#     - name: nginx-sync
-#       namespace: flux-system
-#   interval: 10m0s
-#   path: ./gitops/infra/vela-system/controller
-#   prune: true
-#   sourceRef:
-#     kind: GitRepository
-#     name: flux-system
-# ---
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
+kind: Kustomization
+metadata:
+  name: vela-controller-sync
+  namespace: flux-system
+spec:
+  dependsOn:
+    - name: cert-manager-issuers-sync
+      namespace: flux-system
+    - name: nginx-sync
+      namespace: flux-system
+  interval: 10m0s
+  path: ./gitops/infra/vela-system/controller
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: flux-system
+---
 # apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 # kind: Kustomization
 # metadata:
