@@ -44,6 +44,34 @@ resource "google_compute_subnetwork" "private" {
   }
 }
 
+# FIREWALL RULES
+## Create a firewall rule that allows calling valitaingwebhook API on master node in GKE
+## which is redirected to 8443 not 443 (as in regular kubernetes setup).
+
+data "google_compute_instance_group" "resume-cluster-node-grp" {
+    depends_on = [google_container_node_pool.general]
+    self_link = "${replace(google_container_node_pool.general.instance_group_urls[0], "instanceGroupManagers", "instanceGroups")}"
+}
+
+data "google_compute_instance" "resume-cluster-node-inst" {
+    depends_on = [data.google_compute_instance_group.resume-cluster-node-grp]
+    self_link = sort(data.google_compute_instance_group.resume-cluster-node-grp.instances)[0]    
+}
+
+resource "google_compute_firewall" "validating-webhook" {
+  name    = "allow-validating-webhook"
+  network = google_compute_network.main.name
+
+  allow {
+    protocol = "tcp"
+    ports = ["8443"]
+  }
+  direction = "INGRESS"
+
+  source_ranges = [google_container_cluster.resume_cluster.private_cluster_config[0].master_ipv4_cidr_block]
+  target_tags = [sort(data.google_compute_instance.resume-cluster-node-inst.tags)[0]]
+}
+
 ## ROUTER
 # create Cloud Router to advertise routes, and use it with NAT Gateway to allow
 # VMs without public IP adresses to access internet
