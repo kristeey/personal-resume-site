@@ -74,18 +74,21 @@ spec:
             kind: "Ingress"
             metadata: {
               annotations: {
-                if parameter.certificateArn != _|_ {
-                  "alb.ingress.kubernetes.io/certificate-arn": parameter.certificateArn
-                  "alb.ingress.kubernetes.io/listen-ports": "[{\"HTTP\": 80}, {\"HTTPS\": 443}]"
-                  "alb.ingress.kubernetes.io/ssl-redirect": "443"
-                }
-                "alb.ingress.kubernetes.io/scheme": "internet-facing"
-                "kubernetes.io/ingress.class": "alb"
+                "kubernetes.io/ingress.class": "nginx"
+                "nginx.ingress.kubernetes.io/ssl-redirect": "true"
+                "cert-manager.io/cluster-issuer": "letsencrypt-staging"
               }
               name: context.name
               namespace: context.namespace
             }
             spec: {
+              tls: [{
+                secretName: "\(context.name)-ssl"
+                hosts: [
+                  parameter.hostname,
+                  "www.\(parameter.hostname)"
+                ]
+              }],
               rules: [{
                 host: parameter.hostname
                 http: {
@@ -128,6 +131,5 @@ spec:
           image : string
           port : int
           hostname : string
-          certificateArn ?: string
         }
 
