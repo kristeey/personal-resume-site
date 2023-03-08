@@ -4,7 +4,7 @@ metadata:
   name: frontend
   namespace: vela-system
   annotations:
-    definition.oam.dev/description: "The frontend Application component deploys a pod, service and ingress that will work with externalDNS and aws loadbalancer controller out of the box."
+    definition.oam.dev/description: "The frontend Application component deploys a pod, service and ingress that will work with ingress-nginx, cert-manager and externalDNS out of the box."
 spec:
   workload:
     definition:

@@ -64,7 +64,21 @@ resource "google_compute_firewall" "validating-webhook" {
 
   allow {
     protocol = "tcp"
-    ports = ["8443"]
+    ports = ["8443","9443"]
+  }
+  direction = "INGRESS"
+
+  source_ranges = [google_container_cluster.resume_cluster.private_cluster_config[0].master_ipv4_cidr_block]
+  target_tags = [sort(data.google_compute_instance.resume-cluster-node-inst.tags)[0]]
+}
+
+resource "google_compute_firewall" "health-check" {
+  name    = "allow-health-check"
+  network = google_compute_network.main.name
+
+  allow {
+    protocol = "tcp"
+    ports = ["9440"]
   }
   direction = "INGRESS"
 
