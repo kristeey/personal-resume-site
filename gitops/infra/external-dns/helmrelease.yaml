@@ -28,5 +28,5 @@ spec:
       name: external-dns
       annotations:
         iam.gke.io/gcp-service-account: "external-dns-sa@personal-resume-376620.iam.gserviceaccount.com"
-    # nodeSelector:
-    #   iam.gke.io/gke-metadata-server-enabled: "true"
+    nodeSelector:
+      iam.gke.io/gke-metadata-server-enabled: "true"
