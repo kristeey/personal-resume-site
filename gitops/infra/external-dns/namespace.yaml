@@ -1,0 +1,8 @@
+# Must be the same name as given to the Workload identity
+# role binding in dns.tf
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: external-dns
+  labels:
+    name: external-dns
