@@ -4,13 +4,12 @@ metadata:
   name: personal-resume
   namespace: personal-resume-app
   annotations:
-    app.oam.dev/publishVersion: 0cb327f3
+    app.oam.dev/publishVersion: v1
 spec:
   components:
     - name: personal-resume
       type: frontend
       properties:
-        image: 645352605981.dkr.ecr.eu-north-1.amazonaws.com/personal-resume-webapp:2023-01-29.231905 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
+        image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp/webapp:2023-02-26.230808 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
         port: 80
         hostname: sorensenstene.site
-        certificateArn: arn:aws:acm:eu-north-1:645352605981:certificate/128053c4-28af-41e2-96a9-aff248715ad7

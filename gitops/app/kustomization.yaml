@@ -3,4 +3,4 @@ kind: Kustomization
 resources:
 - namespace.yaml
 - personal-resume.yaml
-- image-update.yaml
+# - image-update.yaml
