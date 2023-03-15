@@ -12,4 +12,4 @@ spec:
       properties:
         image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp/webapp:2023-02-26.230808 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
         port: 80
-        hostname: sorensenstene.site
+        hostname: miljovarsel.no
