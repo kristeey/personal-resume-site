@@ -20,6 +20,7 @@ spec:
     - ingress
     domainFilters:
     - sorensenstene.site
+    - miljovarsel.no
     txtOwnerId: external-dns # Help tell which records are owned by external-dns.
     sync: policy # 'sync' used to make external dns clean up dns records if service/ingresses are deleted
     interval: 5m
