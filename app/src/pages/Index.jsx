@@ -26,23 +26,30 @@ const Index = () => (
             Code version control is handled by Git, and the code is stored in GitHub.
           </li>
           <li>
-            Terraform is used to provision infrastructure in AWS cloud. EKS is
-            bootstrapped with FluxCD amongs other things.
+            Terraform is used to provision infrastructure in GCP. GKE is
+            bootstrapped with FluxCD.
           </li>
           <li>
-            Github action is used to build and push application docker images to ECR.
+            Github action is used to build and push application docker images to GAR.
           </li>
           <li>FluxCD provides GitOps automating application image updates, installes addons,
             and uses the Github repo as source of truth for kubernetes manifests.
           </li>
           <li>
             Kubevela is used to customize Application components such that application
-            manifests are easy to configure and maintain.
+            manifests are easy to configure and maintain. Application versioning is enabled
+            using tagging of Application manifests which is done by GitHub actions upon 
+            push to main.
           </li>
           <li>
-            ExternalDNS is installed on the cluster to automate DNS record creation, and
-            AWS Loadbalancer Controller is used to automate provisioning and management
-            of Elastic Load Balancers for the kubernetes cluster.
+            ExternalDNS is installed on the cluster to automate DNS record creation.
+          </li>
+          <li>
+            Nginx ingress controller is used as an internal loadbalancer routing external
+            traffic to the application pods in the cluster.
+          </li>
+          <li>
+            Cert-manager is used to automate issuance and renewal of TLS certificates.
           </li>
         </ul>
         Please feel free to check out my <Link to="/resume">resume</Link>, and do not
