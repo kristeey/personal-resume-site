@@ -4,7 +4,7 @@ metadata:
   name: personal-resume-webapp
   namespace: flux-system
 spec:
-  image: 645352605981.dkr.ecr.eu-north-1.amazonaws.com/personal-resume-webapp
+  image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp
   interval: 5m0s
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1

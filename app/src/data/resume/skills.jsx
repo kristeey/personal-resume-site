@@ -93,8 +93,8 @@ const skills = [
     category: ['Kubernetes Tools'],
   },
   {
-    title: 'Certmanager',
-    competency: 3,
+    title: 'Cert-manager',
+    competency: 4,
     category: ['Kubernetes Tools'],
   },
   {
@@ -110,6 +110,16 @@ const skills = [
   {
     title: 'Velero',
     competency: 2,
+    category: ['Kubernetes Tools'],
+  },
+  {
+    title: 'External-DNS',
+    competency: 4,
+    category: ['Kubernetes Tools'],
+  },
+  {
+    title: 'Ingress NGINX',
+    competency: 3,
     category: ['Kubernetes Tools'],
   },
   {
