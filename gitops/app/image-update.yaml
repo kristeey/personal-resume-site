@@ -6,6 +6,8 @@ metadata:
 spec:
   image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp
   interval: 5m0s
+  provider: gcp
+  
 ---
 apiVersion: image.toolkit.fluxcd.io/v1beta1
 kind: ImagePolicy
