@@ -23,17 +23,6 @@ resources:
 - sync.yaml
 patches:
   - patch: |
-      apiVersion: image.toolkit.fluxcd.io/v1beta2
-      kind: ImageRepository
-      metadata:
-        name: personal-resume-webapp
-        namespace: flux-system
-      spec:
-        provider: gcp
-    target:
-      kind: ImageRepository
-      name: personal-resume-webapp
-  - patch: |
       apiVersion: v1
       kind: ServiceAccount
       metadata:
