@@ -26,7 +26,7 @@ terraform {
     }
     flux = {
       source  = "fluxcd/flux"
-      version = ">= 0.22.2"
+      version = ">= 0.25.1"
     }
     tls = {
       source  = "hashicorp/tls"
@@ -65,7 +65,20 @@ provider "helm" {
   }
 }
 
-provider "flux" {}
+provider "flux" {
+  kubernetes = {
+    cluster_ca_certificate = module.gke_auth.cluster_ca_certificate
+    host                   = module.gke_auth.host
+    token                  = module.gke_auth.token
+  }
+  git = {
+    url  = "ssh://git@github.com/${var.github_owner}/${var.repository_name}.git"
+    ssh = {
+      username    = "git"
+      private_key = tls_private_key.main.private_key_pem
+    }
+  }
+}
 
 provider "kubernetes" {
   cluster_ca_certificate = module.gke_auth.cluster_ca_certificate

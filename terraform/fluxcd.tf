@@ -1,97 +1,3 @@
-locals {
-  known_hosts = "github.com ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBEmKSENjQEezOmxkZMy7opKgwFB9nkt5YRrYMjNuG5N87uRgg6CLrbo5wAdT/y6v0mKV0U2w0WZ2YB/++Tpockg="
-}
-
-# # Flux
-data "flux_install" "main" {
-  version = "v0.38.2"
-  target_path = var.flux_sync_target_path
-  components = [
-    "source-controller",
-    "kustomize-controller",
-    "helm-controller",
-    //notification-controller
-  ]
-  components_extra = [
-    "image-reflector-controller",
-    "image-automation-controller"
-  ]
-  watch_all_namespaces = true
-}
-
-data "flux_sync" "main" {
-  target_path = var.flux_sync_target_path
-  url         = "ssh://git@github.com/${var.github_owner}/${var.repository_name}"
-  branch      = var.github_branch
-}
-
-# # Kubernetes
-resource "kubernetes_namespace" "flux_system" {
-  depends_on = [
-    google_container_node_pool.general,
-    google_container_cluster.resume_cluster
-  ]
-  metadata {
-    name = "flux-system"
-  }
-
-  lifecycle {
-    ignore_changes = [
-      metadata[0].labels,
-    ]
-  }
-}
-
-data "kubectl_file_documents" "install" {
-  content = data.flux_install.main.content
-}
-
-data "kubectl_file_documents" "sync" {
-  content = data.flux_sync.main.content
-}
-
-locals {
-  install = [for v in data.kubectl_file_documents.install.documents : {
-    data : yamldecode(v)
-    content : v
-    }
-  ]
-  sync = [for v in data.kubectl_file_documents.sync.documents : {
-    data : yamldecode(v)
-    content : v
-    }
-  ]
-}
-
-resource "kubectl_manifest" "install" {
-  for_each   = { for v in local.install : lower(join("/", compact([v.data.apiVersion, v.data.kind, lookup(v.data.metadata, "namespace", ""), v.data.metadata.name]))) => v.content }
-  depends_on = [kubernetes_namespace.flux_system]
-  yaml_body  = each.value
-}
-
-resource "kubectl_manifest" "sync" {
-  for_each   = { for v in local.sync : lower(join("/", compact([v.data.apiVersion, v.data.kind, lookup(v.data.metadata, "namespace", ""), v.data.metadata.name]))) => v.content }
-  depends_on = [kubectl_manifest.install, kubernetes_namespace.flux_system]
-  yaml_body  = each.value
-}
-
-resource "kubernetes_secret" "main" {
-  depends_on = [kubectl_manifest.install]
-
-  metadata {
-    name      = data.flux_sync.main.secret
-    namespace = data.flux_sync.main.namespace
-  }
-
-  data = {
-    identity       = tls_private_key.main.private_key_pem
-    "identity.pub" = tls_private_key.main.public_key_pem
-    known_hosts    = local.known_hosts
-  }
-}
-
-
-# # # GitHub - Used first time only, then removed from state
 
 # # resource "github_repository" "resume_repo" {
 # #   name       = var.repository_name
@@ -105,40 +11,71 @@ resource "kubernetes_secret" "main" {
 # #   branch     = var.github_branch
 # # }
 
+locals {
+  kustomization-override = <<EOT
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+- gotk-sync.yaml
+- gotk-components.yaml
+- helmrepository.yaml
+- image-update-automation.yaml
+- sync.yaml
+patches:
+  - patch: |
+      apiVersion: image.toolkit.fluxcd.io/v1beta2
+      kind: ImageRepository
+      metadata:
+        name: personal-resume-webapp
+        namespace: flux-system
+      spec:
+        provider: gcp
+    target:
+      kind: ImageRepository
+      name: personal-resume-webapp
+  - patch: |
+      apiVersion: v1
+      kind: ServiceAccount
+      metadata:
+        name: image-reflector-controller
+        annotations:
+          iam.gke.io/gcp-service-account: ${google_service_account.kubernetes.email}
+    target:
+      kind: ServiceAccount
+      name: image-reflector-controller
+EOT
+}
+
 resource "tls_private_key" "main" {
   algorithm   = "ECDSA"
   ecdsa_curve = "P256"
 }
 
-# # resource "github_repository_deploy_key" "main" {
-# #   title      = "flux-deploy-key"
-# #   repository = var.repository_name
-# #   key        = tls_private_key.main.public_key_openssh
-# #   read_only  = true
-# # }
+resource "github_repository_deploy_key" "main" {
+  title      = "flux-deploy-key"
+  repository = var.repository_name
+  key        = tls_private_key.main.public_key_openssh
+  read_only  = false
+}
 
-# resource "github_repository_file" "install" {
-#   repository = var.repository_name
-#   file       = data.flux_install.main.path
-#   content    = data.flux_install.main.content
-#   branch     = var.github_branch
-#   overwrite_on_create = true
-# }
+resource "flux_bootstrap_git" "main" {
+  depends_on = [github_repository_deploy_key.main]
 
-# resource "github_repository_file" "sync" {
-#   repository = var.repository_name
-#   file       = data.flux_sync.main.path
-#   content    = data.flux_sync.main.content
-#   branch     = var.github_branch
-#   overwrite_on_create = true
-# }
-
-# # resource "github_repository_file" "kustomize" {
-# #   repository = var.repository_name
-# #   file       = data.flux_sync.main.kustomize_path
-# #   content    = data.flux_sync.main.kustomize_content
-# #   branch     = var.github_branch
-# # }
+  version = "v0.41.0"
+  path = var.flux_sync_target_path
+  components = [
+    "source-controller",
+    "kustomize-controller",
+    "helm-controller",
+    //notification-controller
+  ]
+  components_extra = [
+    "image-reflector-controller",
+    "image-automation-controller"
+  ]
+  watch_all_namespaces = true
+  kustomization_override = local.kustomization-override
+}
 
 # resource "github_repository_file" "patches" {
 #   #  `patch_file_paths` is a map keyed by the keys of `flux_sync.main`
