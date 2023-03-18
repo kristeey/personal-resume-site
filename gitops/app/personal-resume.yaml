@@ -4,12 +4,12 @@ metadata:
   name: personal-resume
   namespace: personal-resume-app
   annotations:
-    app.oam.dev/publishVersion: ff4945ac
+    app.oam.dev/publishVersion: migrated
 spec:
   components:
     - name: personal-resume
       type: frontend
       properties:
-        image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp/webapp:2023-02-26.230808 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
+        image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp/webapp:2023-03-17.114159 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
         port: 80
         hostname: sorensenstene.site
