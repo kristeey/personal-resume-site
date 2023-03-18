@@ -13,7 +13,7 @@ patches:
       metadata:
         name: image-reflector-controller
         annotations:
-          iam.gke.io/gcp-service-account: kubernetes@personal-resume-376620.iam.gserviceaccount.com
+          iam.gke.io/gcp-service-account: "flux-gar-sa@personal-resume-376620.iam.gserviceaccount.com"
     target:
       kind: ServiceAccount
       name: image-reflector-controller

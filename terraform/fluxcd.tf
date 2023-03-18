@@ -28,7 +28,7 @@ patches:
       metadata:
         name: image-reflector-controller
         annotations:
-          iam.gke.io/gcp-service-account: ${google_service_account.kubernetes.email}
+          iam.gke.io/gcp-service-account: ${google_service_account.flux-gar-reader.email}
     target:
       kind: ServiceAccount
       name: image-reflector-controller
@@ -66,12 +66,18 @@ resource "flux_bootstrap_git" "main" {
   kustomization_override = local.kustomization-override
 }
 
-# resource "github_repository_file" "patches" {
-#   #  `patch_file_paths` is a map keyed by the keys of `flux_sync.main`
-#   #  whose values are the paths where the patch files should be installed.
-#   for_each   = data.flux_sync.main.patch_file_paths
-#   repository = var.repository_name
-#   file       = each.value
-#   content    = local.patches[each.key] # Get content of our patch files
-#   branch     = var.github_branch
-# }
+resource "google_service_account" "flux-gar-reader" {
+  account_id = "flux-gar-sa"
+}
+
+resource "google_project_iam_member" "flux-gar-reader" {
+  project = var.project_id
+  role    = "roles/artifactregistry.reader"
+  member  = "serviceAccount:${google_service_account.flux-gar-reader.email}"
+}
+
+resource "google_project_iam_member" "flux-wi-user" {
+  project = var.project_id
+  role    = "roles/iam.workloadIdentityUser"
+  member  = "serviceAccount:${var.project_id}.svc.id.goog[flux-system/image-reflector-controller]"
+}
