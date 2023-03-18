@@ -28,7 +28,7 @@ patches:
       metadata:
         name: image-reflector-controller
         annotations:
-          iam.gke.io/gcp-service-account: ${google_service_account.flux-gar-reader.email}
+          iam.gke.io/gcp-service-account: "${google_service_account.flux-gar-reader.email}"
     target:
       kind: ServiceAccount
       name: image-reflector-controller
