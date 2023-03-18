@@ -76,7 +76,7 @@ spec:
               annotations: {
                 "kubernetes.io/ingress.class": "nginx"
                 "nginx.ingress.kubernetes.io/ssl-redirect": "true"
-                "cert-manager.io/cluster-issuer": "letsencrypt-staging"
+                "cert-manager.io/cluster-issuer": "letsencrypt-prod"
               }
               name: context.name
               namespace: context.namespace
