@@ -76,8 +76,8 @@ resource "google_project_iam_member" "flux-gar-reader" {
   member  = "serviceAccount:${google_service_account.flux-gar-reader.email}"
 }
 
-resource "google_project_iam_member" "flux-wi-user" {
-  project = var.project_id
-  role    = "roles/iam.workloadIdentityUser"
-  member  = "serviceAccount:${var.project_id}.svc.id.goog[flux-system/image-reflector-controller]"
+resource "google_service_account_iam_member" "admin-account-iam" {
+  service_account_id = google_service_account.flux-gar-reader.name
+  role               = "roles/iam.workloadIdentityUser"
+  member             = "serviceAccount:${var.project_id}.svc.id.goog[flux-system/image-reflector-controller]"
 }

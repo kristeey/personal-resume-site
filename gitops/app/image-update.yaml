@@ -4,7 +4,7 @@ metadata:
   name: personal-resume-webapp
   namespace: flux-system
 spec:
-  image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp
+  image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp/webapp
   interval: 5m0s
   provider: gcp
 ---
