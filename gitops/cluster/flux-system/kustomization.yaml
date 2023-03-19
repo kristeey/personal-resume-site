@@ -23,8 +23,10 @@ patches:
       metadata:
         name: image-reflector-controller
       spec:
-        nodeSelector:
-          iam.gke.io/gke-metadata-server-enabled: "true"
+        template:
+          spec:
+            nodeSelector:
+              iam.gke.io/gke-metadata-server-enabled: "true"
     target:
       kind: Deployment
       name: image-reflector-controller
