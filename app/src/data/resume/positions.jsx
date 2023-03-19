@@ -1,5 +1,16 @@
 const positions = [
   {
+    company: 'Sparebanken Vest',
+    position: 'Platform Engineer',
+    positionType: 'Full-Time',
+    link: 'https://www.spv.no',
+    daterange: 'April 2023 - Present',
+    points: [
+      'Build internal developer platform to improve product delivery efficiency and minimize cognitive load for develpers.',
+      'Azure, Terraform, FluxCD, Github Actions, Prometheus/Grafana/Alertmanager, +++',
+    ],
+  },
+  {
     company: 'Tietoevry',
     position: 'SRE/Platform Engineer/DevOps Consultant',
     positionType: 'Full-Time/Part-Time',
@@ -18,7 +29,7 @@ const positions = [
     position: 'Architect/Developer',
     positionType: 'Spare time',
     link: 'https://www.plokk.io',
-    daterange: 'September 2022 -  Present',
+    daterange: 'September 2022 - Januar 2023',
     points: [
       'Design of and implementation of concept, mobile app, webapp and services for gamification of litter picking.',
       'Design and implementation of the development workflow, and automate delivery process.',
