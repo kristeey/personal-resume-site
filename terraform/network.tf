@@ -86,6 +86,19 @@ resource "google_compute_firewall" "health-check" {
   target_tags = [sort(data.google_compute_instance.resume-cluster-node-inst.tags)[0]]
 }
 
+resource "google_compute_firewall" "sealed-secrets" {
+  name    = "gke-to-kubeseal-8080"
+  network = google_compute_network.main.name
+
+  allow {
+    protocol = "tcp"
+    ports = ["8080"]
+  }
+
+  source_ranges = [google_container_cluster.resume_cluster.private_cluster_config[0].master_ipv4_cidr_block]
+  target_tags = [sort(data.google_compute_instance.resume-cluster-node-inst.tags)[0]]
+}
+
 ## ROUTER
 # create Cloud Router to advertise routes, and use it with NAT Gateway to allow
 # VMs without public IP adresses to access internet

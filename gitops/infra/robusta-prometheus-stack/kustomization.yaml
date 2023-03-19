@@ -3,5 +3,5 @@ kind: Kustomization
 resources:
 - helmrelease.yaml
 - namespace.yaml
-# - robusta-auth-config-sealed-secret.yaml
-# - robusta-env-sealed-secrets.yaml
+- robusta-auth-config-sealed-secret.yaml
+- robusta-env-sealed-secrets.yaml
