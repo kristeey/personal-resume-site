@@ -32,6 +32,19 @@ patches:
     target:
       kind: ServiceAccount
       name: image-reflector-controller
+  - patch: |
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: image-reflector-controller
+      spec:
+        template:
+          spec:
+            nodeSelector:
+              iam.gke.io/gke-metadata-server-enabled: "true"
+    target:
+      kind: Deployment
+      name: image-reflector-controller
 EOT
 }
 
