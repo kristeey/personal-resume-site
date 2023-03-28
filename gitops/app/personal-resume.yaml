@@ -10,6 +10,6 @@ spec:
     - name: personal-resume
       type: frontend
       properties:
-        image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp/webapp:2023-03-19.212120 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
+        image: europe-north1-docker.pkg.dev/personal-resume-376620/personal-resume-webapp/webapp:2023-03-28.210556 # {"$imagepolicy": "flux-system:personal-resume-webapp"}
         port: 80
         hostname: sorensenstene.site
