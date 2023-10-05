@@ -14,6 +14,6 @@ RUN npm ci
 # Build the app
 RUN npm run build
 
-FROM nginx:alpine-slim AS server
+FROM nginx:1-alpine3.17-slim AS server
 COPY ./etc/nginx.conf /etc/nginx/conf.d/default.conf
 COPY --from=builder ./app/build /usr/share/nginx/html
